@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { Card, Text } from "react-native-paper";
-import { Title } from "./resturantInfoCardStyledComponents";
 
+import { Title, StyledCardCover } from "./resturantInfoCardStyledComponents";
 import { Resturant } from "../../../utils/types/Resturant";
 
 export interface ResturantInfoProps {
@@ -26,18 +25,11 @@ export const ResturantInfoCard = ({
 
   return (
     <Card elevation={5}>
-      <Card.Cover style={styles.cover} source={{ uri: photos[0] }} />
+      <StyledCardCover source={{ uri: photos[0] }} />
       <Card.Content>
-        <Title>{name}</Title>
+        <Title variant="titleLarge">{name}</Title>
         <Text variant="bodyMedium">{address}</Text>
       </Card.Content>
     </Card>
   );
 };
-
-const styles = StyleSheet.create({
-  cover: {
-    padding: 10,
-    backgroundColor: "white",
-  },
-});
