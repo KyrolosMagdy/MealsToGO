@@ -52,7 +52,7 @@ export const ResturantInfoCard = ({
             </Rating>
             <SectionEnd>
               {isClosedTemporarily && (
-                <Text variant="label" style={{ color: "red" }}>
+                <Text variant="labelMedium" style={{ color: "red" }}>
                   CLOSED TEMPORARILY
                 </Text>
               )}
