@@ -15,7 +15,7 @@ import {
 import { Resturant } from "../../../utils/types/Resturant";
 import star from "../../../assets/start";
 import open from "../../../assets/open";
-import { SpacerComponent } from "../../../components/spacer/Spacer.Component";
+// import { Spacer } from "../../../components/spacer/Spacer.Component";
 
 export interface ResturantInfoProps {
   resturant: Resturant;
@@ -56,9 +56,9 @@ export const ResturantInfoCard = ({
                   CLOSED TEMPORARILY
                 </Text>
               )}
-              <SpacerComponent variant="left.large" />
-              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-              <SpacerComponent variant="left.large" />
+              {/* <Spacer position="left" size="medium" /> */}
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}{" "}
+              {/* <Spacer position="left" size="medium" /> */}
               <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
             </SectionEnd>
           </Section>

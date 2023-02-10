@@ -1,39 +1,55 @@
 import React from "react";
-import { Variant } from "../../utils/types/SpacerVariants";
+import styled, { DefaultTheme, useTheme } from "styled-components/native";
 
-import {
-  TopSmall,
-  TopMedium,
-  TopLarge,
-  LeftSmall,
-  LeftMedium,
-  LeftLarge,
-} from "./Spacer.StyledComponent";
-
-export interface SpacerComponentProps {
-  variant: Variant;
+import { Position, Sizes } from "../../utils/types/SpacerVariants";
+export interface MainProps {
+  position: Position;
+  size: keyof Sizes;
 }
 
-export const SpacerComponent = ({
-  variant = "top.small",
-}: SpacerComponentProps): React.ReactElement => {
-  switch (variant) {
-    case "top.large":
-      return <TopLarge />;
+export interface SpacerComponentProps extends MainProps {
+  theme: DefaultTheme;
+}
 
-    case "top.medium":
-      return <TopMedium />;
+export interface SpacerProps extends MainProps {
+  children?: any;
+}
 
-    case "left.small":
-      return <LeftSmall />;
+const sizeVariant: Sizes = {
+  small: 1,
+  medium: 2,
+  large: 3,
+};
 
-    case "left.medium":
-      return <LeftMedium />;
+const positionVariant = {
+  top: "marginTop",
+  bottom: "marginBottom",
+  left: "marginLeft",
+  right: "marginRight",
+};
 
-    case "left.large":
-      return <LeftLarge />;
+const getVariant = ({ position, size, theme }: SpacerComponentProps) => {
+  const sizeIndex = sizeVariant[size];
+  const property = positionVariant[position];
+  return `${property}:${theme.space[sizeIndex]}`;
+};
 
-    default:
-      return <TopSmall />;
-  }
+export const SpacerView = styled.View`
+  ${({ variant }: { variant: any }) => variant}
+`;
+
+export const Spacer = ({
+  position,
+  size,
+  children,
+}: SpacerProps): React.ReactElement => {
+  const theme = useTheme();
+  const variant = getVariant({ position, size, theme });
+
+  return <SpacerView variant={variant}> {children} </SpacerView>;
+};
+
+Spacer.defaultProps = {
+  position: "top",
+  size: "small",
 };

@@ -1,7 +1,7 @@
-export type Variant =
-  | "top.small"
-  | "top.medium"
-  | "top.large"
-  | "left.small"
-  | "left.medium"
-  | "left.large";
+export type Position = "top" | "bottom" | "right" | "left";
+
+export interface Sizes {
+  small: number;
+  medium: number;
+  large: number;
+}
