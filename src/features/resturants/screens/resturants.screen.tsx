@@ -8,6 +8,7 @@ import {
   StyledSearchWrapper,
   StyledListWrapper,
 } from "./resturantsStyled";
+import { Resturant } from "../../../utils/types/Resturant";
 
 export const ResturantsScreen = (): React.ReactElement => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,7 +26,7 @@ export const ResturantsScreen = (): React.ReactElement => {
           />
         </StyledSearchWrapper>
         <StyledListWrapper>
-          <ResturantInfoCard />
+          <ResturantInfoCard resturant={{} as Resturant} />
         </StyledListWrapper>
       </StyledSafeAreaView>
     </SafeAreaProvider>

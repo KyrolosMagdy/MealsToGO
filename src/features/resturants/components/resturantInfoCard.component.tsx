@@ -1,10 +1,9 @@
 import React from "react";
-import { Card, Text } from "react-native-paper";
-import { Image, View } from "react-native";
+import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
 import {
-  Title,
+  Icon,
   StyledCardCover,
   Info,
   Address,
@@ -16,6 +15,7 @@ import { Resturant } from "../../../utils/types/Resturant";
 import star from "../../../assets/start";
 import open from "../../../assets/open";
 // import { Spacer } from "../../../components/spacer/Spacer.Component";
+import { Text } from "../../../components/typography/text.component";
 
 export interface ResturantInfoProps {
   resturant: Resturant;
@@ -43,6 +43,33 @@ export const ResturantInfoCard = ({
       <StyledCardCover source={{ uri: photos[0] }} />
       <Card.Content>
         <Info>
+          <Text variant="label">{name}</Text>
+          <Section>
+            <Rating>
+              {ratingArray.map((_, index) => (
+                <SvgXml xml={star} width={20} height={20} key={index} />
+              ))}
+            </Rating>
+            <SectionEnd>
+              {isClosedTemporarily && (
+                <Text variant="error">CLOSED TEMPORARILY</Text>
+              )}
+              {/* <Spacer position="left" size="medium"> */}
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+              {/* </Spacer> */}
+              <Icon source={{ uri: icon }} />
+              {/* <Spacer position="left" size="medium" /> */}
+              {/* <Spacer position="left" size="medium" />
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}{" "}
+              <Spacer position="left" size="medium" />
+              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} /> */}
+            </SectionEnd>
+          </Section>
+          <Address>{address}</Address>
+        </Info>
+      </Card.Content>
+      {/* <Card.Content>
+        <Info>
           <Title>{name}</Title>
           <Section>
             <Rating>
@@ -56,16 +83,16 @@ export const ResturantInfoCard = ({
                   CLOSED TEMPORARILY
                 </Text>
               )}
-              {/* <Spacer position="left" size="medium" /> */}
+              <Spacer position="left" size="medium" />
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}{" "}
-              {/* <Spacer position="left" size="medium" /> */}
+              <Spacer position="left" size="medium" />
               <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
             </SectionEnd>
           </Section>
 
           <Address>{address}</Address>
         </Info>
-      </Card.Content>
+      </Card.Content> */}
     </Card>
   );
 };
