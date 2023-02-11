@@ -4,9 +4,9 @@ import { Searchbar } from "react-native-paper";
 
 import { ResturantInfoCard } from "../components/resturantInfoCard.component";
 import {
+  ResturantList,
   StyledSafeAreaView,
   StyledSearchWrapper,
-  StyledListWrapper,
 } from "./resturantsStyled";
 import { Resturant } from "../../../utils/types/Resturant";
 
@@ -25,9 +25,17 @@ export const ResturantsScreen = (): React.ReactElement => {
             value={searchQuery}
           />
         </StyledSearchWrapper>
-        <StyledListWrapper>
-          <ResturantInfoCard resturant={{} as Resturant} />
-        </StyledListWrapper>
+        <ResturantList
+          data={[
+            { name: 1 },
+            { name: 2 },
+            { name: 3 },
+            { name: 4 },
+            { name: 5 },
+          ]}
+          renderItem={() => <ResturantInfoCard resturant={{} as Resturant} />}
+          keyExtractor={(item: any) => item.name}
+        />
       </StyledSafeAreaView>
     </SafeAreaProvider>
   );

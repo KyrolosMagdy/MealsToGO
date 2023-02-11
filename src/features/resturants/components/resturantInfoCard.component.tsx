@@ -10,6 +10,7 @@ import {
   Rating,
   Section,
   SectionEnd,
+  ResturantCard,
 } from "./resturantInfoCardStyledComponents";
 import { Resturant } from "../../../utils/types/Resturant";
 import star from "../../../assets/start";
@@ -39,7 +40,7 @@ export const ResturantInfoCard = ({
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
-    <Card elevation={5}>
+    <ResturantCard elevation={5}>
       <StyledCardCover source={{ uri: photos[0] }} />
       <Card.Content>
         <Info>
@@ -68,31 +69,6 @@ export const ResturantInfoCard = ({
           <Address>{address}</Address>
         </Info>
       </Card.Content>
-      {/* <Card.Content>
-        <Info>
-          <Title>{name}</Title>
-          <Section>
-            <Rating>
-              {ratingArray.map((_, index) => (
-                <SvgXml xml={star} width={20} height={20} key={index} />
-              ))}
-            </Rating>
-            <SectionEnd>
-              {isClosedTemporarily && (
-                <Text variant="labelMedium" style={{ color: "red" }}>
-                  CLOSED TEMPORARILY
-                </Text>
-              )}
-              <Spacer position="left" size="medium" />
-              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}{" "}
-              <Spacer position="left" size="medium" />
-              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
-            </SectionEnd>
-          </Section>
-
-          <Address>{address}</Address>
-        </Info>
-      </Card.Content> */}
-    </Card>
+    </ResturantCard>
   );
 };
