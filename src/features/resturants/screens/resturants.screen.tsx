@@ -3,11 +3,8 @@ import { SafeAreaProvider } from "react-native-safe-area-view";
 import { Searchbar } from "react-native-paper";
 
 import { ResturantInfoCard } from "../components/resturantInfoCard.component";
-import {
-  ResturantList,
-  StyledSafeAreaView,
-  StyledSearchWrapper,
-} from "./resturantsStyled";
+import { ResturantList, StyledSearchWrapper } from "./resturantsStyled";
+import { StyledSafeAreaView } from "../../../components/utility/safeAreaComponent";
 import { Resturant } from "../../../utils/types/Resturant";
 
 export const ResturantsScreen = (): React.ReactElement => {
