@@ -26,19 +26,16 @@ export const ResturantInfoCard = ({
   resturant = {} as Resturant,
 }: ResturantInfoProps): React.ReactElement => {
   const {
-    name = "Some Resturant",
-    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-    photos = [
-      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-    ],
-    address = "100 some random street",
-    isOpenNow = true,
-    rating = 4,
-    isClosedTemporarily = true,
+    name,
+    icon,
+    photos,
+    address,
+    isOpenNow,
+    rating,
+    isClosedTemporarily,
+    placeId,
   } = resturant;
-
   const ratingArray = Array.from(new Array(Math.floor(rating)));
-
   return (
     <ResturantCard elevation={5}>
       <StyledCardCover source={{ uri: photos[0] }} />
@@ -48,7 +45,12 @@ export const ResturantInfoCard = ({
           <Section>
             <Rating>
               {ratingArray.map((_, index) => (
-                <SvgXml xml={star} width={20} height={20} key={index} />
+                <SvgXml
+                  xml={star}
+                  width={20}
+                  height={20}
+                  key={`star-${placeId}-${index}`}
+                />
               ))}
             </Rating>
             <SectionEnd>

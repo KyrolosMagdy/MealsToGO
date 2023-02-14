@@ -1,36 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-view";
-import { Searchbar } from "react-native-paper";
+import { MD2Colors } from "react-native-paper";
 
 import { ResturantInfoCard } from "../components/resturantInfoCard.component";
-import { ResturantList, StyledSearchWrapper } from "./resturantsStyled";
+import { Loading, LoadingContainer, ResturantList } from "./resturantsStyled";
 import { StyledSafeAreaView } from "../../../components/utility/safeAreaComponent";
 import { Resturant } from "../../../utils/types/Resturant";
+import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { Search } from "../components/search.component";
 
 export const ResturantsScreen = (): React.ReactElement => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const onChangeSearch = (query: string) => setSearchQuery(query);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   return (
     <SafeAreaProvider>
       <StyledSafeAreaView>
-        <StyledSearchWrapper>
-          <Searchbar
-            placeholder="Search"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-          />
-        </StyledSearchWrapper>
+        {isLoading && (
+          <LoadingContainer>
+            <Loading animating size={50} color={MD2Colors.blue300} />
+          </LoadingContainer>
+        )}
+        <Search />
         <ResturantList
-          data={[
-            { name: 1 },
-            { name: 2 },
-            { name: 3 },
-            { name: 4 },
-            { name: 5 },
-          ]}
-          renderItem={() => <ResturantInfoCard resturant={{} as Resturant} />}
+          data={restaurants}
+          renderItem={({ item }: { item: Resturant }) => {
+            return <ResturantInfoCard resturant={item} />;
+          }}
           keyExtractor={(item: any) => item.name}
         />
       </StyledSafeAreaView>

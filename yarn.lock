@@ -2831,7 +2831,7 @@
   "resolved" "https://registry.npmjs.org/camelcase/-/camelcase-6.3.0.tgz"
   "version" "6.3.0"
 
-"camelize@^1.0.0":
+"camelize@^1.0.0", "camelize@^1.0.1":
   "integrity" "sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ=="
   "resolved" "https://registry.npmjs.org/camelize/-/camelize-1.0.1.tgz"
   "version" "1.0.1"

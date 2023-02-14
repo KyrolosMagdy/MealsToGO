@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React from "react";
 import { View } from "react-native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
@@ -20,7 +19,10 @@ import { Text } from "./src/components/typography/text.component";
 import { ResturantsScreen } from "./src/features/resturants/screens/resturants.screen";
 import { theme } from "./src/infrastructure/theme";
 import { Routes } from "./src/utils/types/routes";
-
+import { ResturantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/loction/location.context";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const TAB_ICON: { [k in Routes]: string } = {
   resturants: "restaurant",
   map: "map",
@@ -101,9 +103,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tabs />
-        </NavigationContainer>
+        <LocationContextProvider>
+          <ResturantsContextProvider>
+            <NavigationContainer>
+              <Tabs />
+            </NavigationContainer>
+          </ResturantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
 
       <ExpoStatusBar style="auto" />
