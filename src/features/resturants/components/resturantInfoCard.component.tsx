@@ -17,6 +17,7 @@ import star from "../../../assets/start";
 import open from "../../../assets/open";
 // import { Spacer } from "../../../components/spacer/Spacer.Component";
 import { Text } from "../../../components/typography/text.component";
+import { Favourite } from "../../../components/favourites/favourite.component";
 
 export interface ResturantInfoProps {
   resturant: Resturant;
@@ -38,6 +39,7 @@ export const ResturantInfoCard = ({
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   return (
     <ResturantCard elevation={5}>
+      <Favourite restaurant={resturant} />
       <StyledCardCover source={{ uri: photos[0] }} />
       <Card.Content>
         <Info>
