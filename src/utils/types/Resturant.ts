@@ -1,3 +1,5 @@
+import { GeometryLocation } from "./Location";
+
 export interface Resturant {
   name: string;
   icon: string;
@@ -7,4 +9,5 @@ export interface Resturant {
   rating: number;
   isClosedTemporarily: boolean;
   placeId: string;
+  geometry: GeometryLocation;
 }

@@ -3,15 +3,24 @@ export interface LocationKeys {
   lat: number;
 }
 
+export interface LocationInfo extends LocationKeys {
+  viewport: {
+    northeast: LocationKeys;
+    southwest: LocationKeys;
+  };
+}
+
+export interface GeometryLocation {
+  location: LocationKeys;
+  viewport: {
+    northeast: LocationKeys;
+    southwest: LocationKeys;
+  };
+}
+
 export interface LocationResult {
   results: {
-    geometry: {
-      location: LocationKeys;
-      viewport: {
-        northeast: LocationKeys;
-        southwest: LocationKeys;
-      };
-    };
+    geometry: GeometryLocation;
   }[];
 }
 

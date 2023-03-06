@@ -14,6 +14,7 @@ import { Routes } from "../../../utils/types/routes";
 export const ResturantsScreen = ({
   navigation,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   navigation: any;
 }): React.ReactElement => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
@@ -45,6 +46,7 @@ export const ResturantsScreen = ({
               </TouchableOpacity>
             );
           }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           keyExtractor={(item: any) => item.name}
         />
       </StyledSafeAreaView>

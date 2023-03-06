@@ -12,6 +12,7 @@ import { Routes } from "../../utils/types/routes";
 //  "./src/components/typography/text.component"
 import { Text } from "../../components/typography/text.component";
 import { RestaurantsNavigator } from "./restaurants.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -52,14 +53,6 @@ const screenOptions = ({
   // tabBarActiveTintColor: "tomato",
   // tabBarInactiveTintColor: "gray",
 };
-
-function MapScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text variant="body">Home!</Text>
-    </View>
-  );
-}
 
 function SettingsScreen() {
   return (

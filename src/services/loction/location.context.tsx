@@ -1,19 +1,19 @@
 import React, { useState, useEffect, createContext } from "react";
-import { LocationKeys } from "../../utils/types/Location";
+import { LocationInfo, LocationKeys } from "../../utils/types/Location";
 
 import { locationRequest, locationTransform } from "./location.service";
 
 export interface LocationContextProps {
   isLoading: boolean;
   error: string;
-  location: LocationKeys;
+  location: LocationInfo;
   keyword: string;
 }
 
 const defaultValue: LocationContextProps = {
   isLoading: false,
   error: "",
-  location: {} as LocationKeys,
+  location: {} as LocationInfo,
   keyword: "San Francisco",
 };
 
