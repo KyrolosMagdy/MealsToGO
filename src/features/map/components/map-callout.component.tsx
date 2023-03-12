@@ -11,5 +11,5 @@ export interface MapCalloutProps {
 export const MapCalloutComponent = ({
   restaurant,
 }: MapCalloutProps): React.ReactElement => {
-  return <CompactRestaurantInfo restaurant={restaurant} />;
+  return <CompactRestaurantInfo restaurant={restaurant} isMap />;
 };

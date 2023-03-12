@@ -3,13 +3,23 @@ import { Searchbar } from "react-native-paper";
 import { LocationContext } from "../../../services/loction/location.context";
 import { StyledSearchWrapper } from "../screens/resturantsStyled";
 
-export const Search = (): React.ReactElement => {
+export interface SearchProps {
+  isFavouritesToggle: boolean;
+  onFavouritesToggle: () => void;
+}
+
+export const Search = ({
+  isFavouritesToggle,
+  onFavouritesToggle,
+}: SearchProps): React.ReactElement => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState<string>(keyword);
 
   return (
     <StyledSearchWrapper>
       <Searchbar
+        icon={isFavouritesToggle ? "heart" : "heart-outline"}
+        onIconPress={onFavouritesToggle}
         placeholder="Search for a location"
         value={searchKeyword}
         onChangeText={(e) => {

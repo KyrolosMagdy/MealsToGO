@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from "react";
 import { Platform } from "react-native";
 
@@ -11,14 +12,16 @@ import {
 
 export interface CompactRestaurantProps {
   restaurant: Resturant;
+  isMap?: boolean;
 }
 
 const isAndroid = Platform.OS === "android";
 
 export const CompactRestaurantInfo = ({
   restaurant,
+  isMap,
 }: CompactRestaurantProps): React.ReactElement => {
-  const Image = isAndroid ? CompactWebview : CompactImage;
+  const Image = (isAndroid && isMap) ? CompactWebview : CompactImage;
   return (
     <Item>
       <Image source={{ uri: restaurant.photos[0] }} />
