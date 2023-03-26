@@ -1,10 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  NavigationContainer,
-  RouteProp,
-  ParamListBase,
-} from "@react-navigation/native";
+import { RouteProp, ParamListBase } from "@react-navigation/native";
 import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -66,12 +62,10 @@ const Tab = createBottomTabNavigator();
 
 export const AppNavigator = (): React.ReactElement => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={({ route }) => screenOptions({ route })}>
-        <Tab.Screen name={Routes.resturants} component={RestaurantsNavigator} />
-        <Tab.Screen name={Routes.map} component={MapScreen} />
-        <Tab.Screen name={Routes.settings} component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator screenOptions={({ route }) => screenOptions({ route })}>
+      <Tab.Screen name={Routes.resturants} component={RestaurantsNavigator} />
+      <Tab.Screen name={Routes.map} component={MapScreen} />
+      <Tab.Screen name={Routes.settings} component={SettingsScreen} />
+    </Tab.Navigator>
   );
 };

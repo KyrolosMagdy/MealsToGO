@@ -3,4 +3,7 @@ export const Routes = {
   restaurantDetails: "restaurants-details",
   map: "map",
   settings: "settings",
+  mainLogin: "main",
+  login: "login",
+  register: "register",
 };
