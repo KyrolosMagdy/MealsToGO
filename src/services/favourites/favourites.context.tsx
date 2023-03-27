@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
+
 import { Resturant } from "../../utils/types/Resturant";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { authenticationContext } from "../authentication/authentication.context";
 
 export interface FavouriteContextState {
   favourites: Resturant[];
@@ -22,20 +24,23 @@ export const FavouriteContextProvider = ({
 }: {
   children: React.ReactElement;
 }): React.ReactElement => {
+  const { user } = useContext(authenticationContext);
+  console.log("userUid: ", user?.uid);
   const [favourites, setFavourites] = useState<Resturant[]>([]);
 
-  const saveFavourites = async (value: Resturant[]) => {
+  const saveFavourites = async (value: Resturant[], uid: string) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("@favourites", jsonValue);
+      await AsyncStorage.setItem(`@favourites-${uid}`, jsonValue);
     } catch (e) {
       console.log("error storing", e);
     }
   };
 
-  const loadFavourites = async () => {
+  const loadFavourites = async (uid: string) => {
     try {
-      const value = await AsyncStorage.getItem("@favourites");
+      const value = await AsyncStorage.getItem(`@favourites-${uid}`);
+      console.log("value: ", AsyncStorage.getAllKeys());
       if (value !== null) {
         setFavourites(JSON.parse(value));
       }
@@ -56,12 +61,16 @@ export const FavouriteContextProvider = ({
   };
 
   useEffect(() => {
-    loadFavourites();
-  }, []);
+    if (user?.uid) {
+      loadFavourites(user.uid);
+    }
+  }, [user]);
 
   useEffect(() => {
-    saveFavourites(favourites);
-  }, [favourites]);
+    if (user?.uid) {
+      saveFavourites(favourites, user.uid);
+    }
+  }, [favourites, user]);
 
   return (
     <FavouriteContext.Provider
