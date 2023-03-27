@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RouteProp, ParamListBase } from "@react-navigation/native";
-import { View } from "react-native";
+import { View, Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Routes } from "../../utils/types/routes";
@@ -9,6 +9,7 @@ import { Routes } from "../../utils/types/routes";
 import { Text } from "../../components/typography/text.component";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
+import { authenticationContext } from "../../services/authentication/authentication.context";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -51,9 +52,16 @@ const screenOptions = ({
 };
 
 function SettingsScreen() {
+  const { onLogout } = useContext(authenticationContext);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text variant="body">Settings!</Text>
+      <Button
+        title="Logout"
+        onPress={() => {
+          onLogout();
+        }}
+      />
     </View>
   );
 }
