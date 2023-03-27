@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 import {
   AccountBackground,
@@ -20,7 +21,7 @@ export const LoginScreen = ({
 }): React.ReactElement => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, error } = useContext(authenticationContext);
+  const { onLogin, error, isLoading } = useContext(authenticationContext);
 
   return (
     <AccountBackground>
@@ -42,7 +43,6 @@ export const LoginScreen = ({
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            secure
             onChangeText={(p: string) => setPassword(p)}
           />
         </Spacer>
@@ -52,13 +52,17 @@ export const LoginScreen = ({
           </ErrorContainer>
         )}
         <Spacer size="large">
-          <AuthButton
-            icon="lock-open-outline"
-            mode="contained"
-            onPress={() => onLogin({ email, password })}
-          >
-            Login
-          </AuthButton>
+          {isLoading ? (
+            <ActivityIndicator animating color={MD2Colors.blue300} />
+          ) : (
+            <AuthButton
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={() => onLogin({ email, password })}
+            >
+              Login
+            </AuthButton>
+          )}
         </Spacer>
       </AccountContainer>
       <Spacer size="large">
