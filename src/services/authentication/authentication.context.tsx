@@ -82,7 +82,6 @@ export const AuthenticationContextProvider = ({
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         setUser(res);
-        console.log("res: ", res);
         setError("");
       })
       .catch((error) => {

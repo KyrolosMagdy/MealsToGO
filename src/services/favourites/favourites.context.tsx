@@ -25,7 +25,6 @@ export const FavouriteContextProvider = ({
   children: React.ReactElement;
 }): React.ReactElement => {
   const { user } = useContext(authenticationContext);
-  console.log("userUid: ", user?.uid);
   const [favourites, setFavourites] = useState<Resturant[]>([]);
 
   const saveFavourites = async (value: Resturant[], uid: string) => {
@@ -40,7 +39,6 @@ export const FavouriteContextProvider = ({
   const loadFavourites = async (uid: string) => {
     try {
       const value = await AsyncStorage.getItem(`@favourites-${uid}`);
-      console.log("value: ", AsyncStorage.getAllKeys());
       if (value !== null) {
         setFavourites(JSON.parse(value));
       }

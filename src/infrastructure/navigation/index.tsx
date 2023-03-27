@@ -7,7 +7,6 @@ import { NavigationContainer } from "@react-navigation/native";
 
 export const Navigation = (): React.ReactElement => {
   const { user } = useContext(authenticationContext);
-  console.log("user: ", user);
   return (
     <NavigationContainer>
       {user?.accessToken || user?._tokenResponse ? (
