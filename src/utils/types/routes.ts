@@ -6,4 +6,5 @@ export const Routes = {
   mainLogin: "main",
   login: "login",
   register: "register",
+  favourites: "Favourites",
 };

@@ -1,18 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RouteProp, ParamListBase } from "@react-navigation/native";
-import { View, Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Routes } from "../../utils/types/routes";
 //  "./src/components/typography/text.component"
-import { Text } from "../../components/typography/text.component";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
-import { authenticationContext } from "../../services/authentication/authentication.context";
 import { FavouriteContextProvider } from "../../services/favourites/favourites.context";
 import { LocationContextProvider } from "../../services/loction/location.context";
 import { ResturantsContextProvider } from "../../services/restaurants/restaurants.context";
+import { SettingsScreen } from "../../features/settings/screens/settings.screen";
+import { SettingsNavigator } from "./settings.navigator";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -54,21 +53,6 @@ const screenOptions = ({
   // tabBarInactiveTintColor: "gray",
 };
 
-function SettingsScreen() {
-  const { onLogout } = useContext(authenticationContext);
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text variant="body">Settings!</Text>
-      <Button
-        title="Logout"
-        onPress={() => {
-          onLogout();
-        }}
-      />
-    </View>
-  );
-}
-
 const Tab = createBottomTabNavigator();
 
 export const AppNavigator = (): React.ReactElement => {
@@ -84,7 +68,7 @@ export const AppNavigator = (): React.ReactElement => {
               component={RestaurantsNavigator}
             />
             <Tab.Screen name={Routes.map} component={MapScreen} />
-            <Tab.Screen name={Routes.settings} component={SettingsScreen} />
+            <Tab.Screen name={Routes.settings} component={SettingsNavigator} />
           </Tab.Navigator>
         </ResturantsContextProvider>
       </LocationContextProvider>
